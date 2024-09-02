@@ -30,4 +30,50 @@ Modificando los parámetros de inicio del kernel es posible obtener un shell de 
 
 ### Pasos a seguir
 
-Al presionar la tecla "e" en el inicio de Debian, accedes al menú de edición de las entradas del GRUB (GRand Unified Bootloader). Este menú te permite modificar temporalmente los parámetros de arranque de Debian, como las opciones del kernel o las rutas de los dispositivos. Los cambios que realices en este menú no se guardan de forma permanente, solo se aplican para esa sesión de arranque.
+### 1. Al presionar la tecla "e" en el inicio de Debian, accedes al menú de edición de las entradas del GRUB (GRand Unified Bootloader). Este menú te permite modificar temporalmente los parámetros de arranque de Debian, como las opciones del kernel o las rutas de los dispositivos. Los cambios que realices en este menú no se guardan de forma permanente, solo se aplican para esa sesión de arranque.
+
+![e](https://github.com/RaulRiCi/Sistemas_UnixLinux_Semana_3/blob/main/Capturas/E.png?raw=true)
+
+### 2. init=/bin/sh:
+
+Esta es una opción del kernel que se utiliza para especificar qué programa debe ejecutarse como proceso de inicialización (PID 1) durante el arranque. En este caso, se le está diciendo al kernel que, en lugar de iniciar el sistema normalmente, cargue una shell /bin/sh. Este método se utiliza frecuentemente para entrar en un modo de recuperación o para realizar tareas de mantenimiento, ya que carga un entorno mínimo con acceso a la shell.
+
+![init](https://github.com/RaulRiCi/Sistemas_UnixLinux_Semana_3/blob/main/Capturas/E.png?raw=true)
+
+3. Presionamos ctrl x
+
+![einit2](https://github.com/RaulRiCi/Sistemas_UnixLinux_Semana_3/blob/main/Capturas/E.png?raw=true)
+
+### 4. mount:
+
+El comando mount se utiliza para montar sistemas de archivos en Linux. Esto significa que se asocia un sistema de archivos con un punto de montaje en el árbol de directorios, lo que permite acceder a su contenido. Sin argumentos, mount muestra una lista de todos los sistemas de archivos montados en ese momento.
+
+![mount](https://github.com/RaulRiCi/Sistemas_UnixLinux_Semana_3/blob/main/Capturas/E.png?raw=true)
+
+### 5. mount -o remount,rw /:
+
+Este comando vuelve a montar el sistema de archivos raíz / con permisos de lectura y escritura. Por defecto, algunos sistemas pueden arrancar con el sistema de archivos raíz montado en modo de solo lectura para realizar chequeos o reparaciones antes de permitir modificaciones. Este comando cambia ese estado a lectura-escritura (rw), lo que permite modificar archivos en el sistema de archivos raíz.
+
+![mount2](https://github.com/RaulRiCi/Sistemas_UnixLinux_Semana_3/blob/main/Capturas/E.png?raw=true)
+
+### 6. passwd
+
+![mount3](https://github.com/RaulRiCi/Sistemas_UnixLinux_Semana_3/blob/main/Capturas/E.png?raw=true)
+
+### 7. Reiniciamos la maquina
+
+### 8. Modificar opciones avanzadas, sudo nano /etc/grub.d/10_linux
+
+El comando sudo nano /etc/grub.d/10_linux abre el archivo 10_linux, ubicado en el directorio /etc/grub.d/, en el editor de texto nano con permisos de superusuario.
+
+Este archivo es parte de la configuración de GRUB (GRand Unified Bootloader) en sistemas Linux. Específicamente, el archivo 10_linux se encarga de detectar y generar entradas en el menú de GRUB para los sistemas operativos Linux instalados en la máquina. Cuando ejecutas sudo update-grub, el contenido de este archivo se utiliza para construir el archivo de configuración principal de GRUB.
+
+![linux](https://github.com/RaulRiCi/Sistemas_UnixLinux_Semana_3/blob/main/Capturas/E.png?raw=true)
+
+### 9. Vamos a la linea 132
+
+### 10. --unrestricted antes de la etiqueta ${CLASS}:
+
+En el contexto de GRUB, la opción --unrestricted se puede agregar a la configuración de una entrada de menú para hacerla accesible sin restricciones, es decir, no requiere autenticación (contraseña) para ser seleccionada desde el menú de GRUB. La etiqueta "CLASS" en los scripts de GRUB se utiliza para definir clases de entrada de menú, que pueden ser utilizadas para aplicar configuraciones específicas a diferentes entradas del menú de arranque. Colocar --unrestricted antes de ${CLASS} significa que esa entrada de menú específica se podrá seleccionar libremente en GRUB, incluso si otras entradas requieren autenticación.
+
+### 11. Despues de haber guardado los cambios, ponemos el comando sudo update-grub
