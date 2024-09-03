@@ -90,8 +90,24 @@ En el contexto de GRUB, la opción --unrestricted se puede agregar a la configur
 
 El comando sudo grub-mkpasswd-pbkdf2 se utiliza para generar una contraseña cifrada para usar en la configuración de GRUB. Específicamente, este comando genera un hash PBKDF2 (Password-Based Key Derivation Function 2) de la contraseña que proporcionas. Esta hash se puede usar para proteger el menú de GRUB con una contraseña.
 
+![password](https://github.com/RaulRiCi/Sistemas_UnixLinux_Semana_3/blob/main/Capturas/password.png?raw=true)
+
 ### 2. sudo nano /etc/grub.d/40_custom
 
 El comando sudo nano /etc/grub.d/40_custom abre el archivo 40_custom en el directorio /etc/grub.d/ usando el editor de texto nano con permisos de superusuario.
 
 El archivo 40_custom es un archivo de configuración utilizado por GRUB para añadir entradas personalizadas al menú de arranque. Este archivo se usa para definir entradas de menú adicionales o personalizadas que no se generan automáticamente por otros scripts en /etc/grub.d/.
+
+![password2](https://github.com/RaulRiCi/Sistemas_UnixLinux_Semana_3/blob/main/Capturas/password2.png?raw=true)
+
+3. Colocamos el usuario root y la contraseña encriptada. Finalmente, guardamos el script y usamos sudo update-grub.
+
+![password3](https://github.com/RaulRiCi/Sistemas_UnixLinux_Semana_3/blob/main/Capturas/linux5.png?raw=true)
+
+4. Reiniciamos el sistema, comprobamos que al momento de que inicie el sistema, será de forma normal, pidiendo nuestro usuario y contraseña.
+
+![final](https://github.com/RaulRiCi/Sistemas_UnixLinux_Semana_3/blob/main/Capturas/final.png?raw=true)
+
+5. Volvemos a reiniciar el sistema y comprobaremos que al intentar ingresar en el menú de edición de las entradas del GRUB, esta pedida el usuario root y la contraseña que creamos para generar la contraseña encriptada.
+
+![pf2](https://github.com/RaulRiCi/Sistemas_UnixLinux_Semana_3/blob/main/Capturas/final2.png?raw=true)
