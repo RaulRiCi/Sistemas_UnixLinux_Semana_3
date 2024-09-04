@@ -1,4 +1,4 @@
-# Laboratorio 3 - En desarrollo
+# Laboratorio 3
 
 # Asegurar Bootloader
 
